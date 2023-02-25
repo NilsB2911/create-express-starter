@@ -1,0 +1,16 @@
+{
+  "name": "create-express-starter",
+  "version": "2.0.2",
+  "description": "Starts express with modules, eslint and prettier",
+  "bin": "./index.js",
+  "type": "module",
+  "author": "Nils Blessing",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "figlet": "^1.5.2",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^9.1.4",
+    "nanospinner": "^1.1.0"
+  }
+}
