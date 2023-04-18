@@ -57,6 +57,16 @@ async function getPort() {
     return answers.port
 }
 
+async function getBranch() {
+    const answers = await inquirer.prompt({
+        name: 'branch',
+        type: 'list',
+        message: 'JS or TS:',
+        choices: ['javascript', 'typescript'],
+    })
+    return answers.branch
+}
+
 const p = new Promise((resolve) => {
     figlet('create-express-starter', (err, data) => {
         if (err) {
@@ -72,6 +82,7 @@ console.log(gradient.fruit(fig))
 
 const name = await getProjectName()
 const manager = await getPackageManager()
+const jsTs = await getBranch()
 const author = await getUsername()
 const port = await getPort()
 const currentDir = process.cwd();
@@ -84,7 +95,7 @@ const gitSpinner = createSpinner('Cloning...')
 gitSpinner.spin()
 const git = new Promise((resolve, reject) => {
     try {
-        exec(`git clone --depth=1 https://github.com/NilsB2911/express-starter.git ${path.join(currentDir, name)}`, (error, stdout, stderr) => {
+        exec(`git clone --branch ${jsTs} --depth=1 https://github.com/NilsB2911/express-starter.git ${path.join(currentDir, name)}`, (error, stdout, stderr) => {
             if (error) reject(error)
             resolve('done')
         })
